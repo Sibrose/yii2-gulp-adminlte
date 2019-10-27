@@ -1,0 +1,106 @@
+@import "./../_variable";
+
+@mixin image-2x {
+  @media
+  only screen and (-webkit-min-device-pixel-ratio: 2),
+  only screen and (min--moz-device-pixel-ratio: 2),
+  only screen and (-o-min-device-pixel-ratio: 2/1),
+  only screen and (min-device-pixel-ratio: 2),
+  only screen and (min-resolution: 192dpi),
+  only screen and (min-resolution: 2dppx) {
+    @content
+  }
+}
+
+@mixin mobile {
+  @media (max-width: $tablet) {
+    @content
+  }
+}
+
+@mixin tablet {
+  @media (max-width: $desktop-s) {
+    @content
+  }
+}
+
+@mixin desktop--min {
+  @media (max-width: $desktop-m) {
+    @content
+  }
+}
+
+@mixin desktop--middle {
+  @media (max-width: $desktop-l) {
+    @content
+  }
+}
+
+@mixin desktop--big {
+  @media (min-width: ($desktop-l + 1px)) {
+    @content
+  }
+}
+
+// Conventional way, smaller-to-bigger style overriding, 'mobile-first'.
+@mixin mobile-up {
+  @media (min-width: 0) {
+    @content
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: $tablet + 1) {
+    @content
+  }
+}
+
+@mixin desktop-s-up {
+  @media (min-width: $desktop-s + 1) {
+    @content
+  }
+}
+
+@mixin desktop-m-up {
+  @media (min-width: $desktop-m + 1) {
+    @content
+  }
+}
+
+@mixin desktop-l-up {
+  @media (min-width: $desktop-l + 1) {
+    @content
+  }
+}
+
+
+// THE RIGHT WAY !
+@mixin mobile-up {
+  @media (min-width: 0) {
+    @content
+  }
+}
+
+@mixin tablet-up {
+  @media (min-width: $tablet + 1) {
+    @content
+  }
+}
+
+@mixin desktop-s-up {
+  @media (min-width: $desktop-s + 1) {
+    @content
+  }
+}
+
+@mixin desktop-m-up {
+  @media (min-width: $desktop-m + 1) {
+    @content
+  }
+}
+
+@mixin desktop-l-up {
+  @media (min-width: $desktop-l + 1) {
+    @content
+  }
+}

@@ -1,0 +1,22 @@
+@import "foundation/__normalize.scss";
+
+/*=== базовый слой ===*/
+
+@import "base/__variable.scss";
+@import "base/mixins/mixin.scss";
+@import "base/color.scss";
+@import "base/typography.scss";
+@import "base/buttons.scss";
+@import "base/fonts.scss";
+
+
+
+/*=== проектный слой ===*/
+@import "project/layout.scss";
+@import "project/header.scss";
+@import "project/footer.scss";
+
+
+
+/*=== контекстный слой ===*/
+@import "context/media.scss";
