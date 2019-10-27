@@ -3,4 +3,8 @@
 
 Шаги установки:
 
-1. Установить зависимости `composer install`
+1. `composer install`
+
+2. `yarn install`
+
+3. 
