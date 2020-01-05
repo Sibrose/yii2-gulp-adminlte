@@ -12,9 +12,15 @@ const PRODUCTION = !!(yargs.argv.production);
 
 // Load settings from config.yml
 var config = loadConfig();
+var envVariables = loadVariables();
 
 function loadConfig() {
     ymlFile = fs.readFileSync('config.yml', 'utf8');
+    return yaml.load(ymlFile);
+}
+
+function loadVariables() {
+    ymlFile = fs.readFileSync('.env', 'utf8');
     return yaml.load(ymlFile);
 }
 
@@ -83,7 +89,7 @@ function watch() {
 
     // Initialize Browsersync
     browsersync.init({
-        proxy: config.PROXY
+        proxy: envVariables.PROXY
     });
 
     // Watch images
