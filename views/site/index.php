@@ -6,5 +6,3 @@ $this->title = 'My Yii Application';
 ?>
 
 index
-
-tet

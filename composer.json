@@ -20,7 +20,9 @@
         "yiisoft/yii2-swiftmailer": "~2.0.0 || ~2.1.0",
         "dmstr/yii2-adminlte-asset": "2.*",
         "bower-asset/font-awesome": "^5.11",
-        "bower-asset/bootstrap-sass": "^3.4"
+        "bower-asset/bootstrap-sass": "^3.4",
+        "yiisoft/yii2-imagine": "~2.0.4",
+        "pavlinter/yii2-display-image": "1.1.4"
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",

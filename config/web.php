@@ -96,4 +96,18 @@ if (YII_ENV_DEV) {
     ];
 }
 
+Yii::$container->set('pavlinter\display\DisplayImage', [
+    'bgColor' => 'ffffff',
+    'config' => [
+        'all' => [
+            'imagesWebDir' => '@web',
+            'imagesDir' => '@webroot',
+            'defaultWebDir' => '@web/uploads',
+            'defaultDir' => '@webroot/uploads',
+            'defaultImage' => 'default.png',
+            'mode' => \pavlinter\display\DisplayImage::MODE_STATIC,
+        ],
+    ]
+]);
+
 return $config;
