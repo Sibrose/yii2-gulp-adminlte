@@ -19,7 +19,7 @@ class AdminBaseController extends Controller
                 'rules' => [
                     [
                         'allow' => true,
-                        'actions' => ['login', 'error'],
+                        'actions' => ['login', 'error', 'password-recovery', 'password-reset'],
                     ],
                     [
                         'allow' => true,

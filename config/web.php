@@ -7,6 +7,7 @@ $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
+    'language' => 'ru',
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -42,10 +43,10 @@ $config = [
         ],
         'mailer' => [
             'class' => 'yii\swiftmailer\Mailer',
-            // send all mails to a file by default. You have to set
-            // 'useFileTransport' to false and configure a transport
-            // for the mailer to send real emails.
-            'useFileTransport' => true,
+            'useFileTransport' => false,
+        ],
+        'mailService' => [
+            'class' => 'app\services\MailService',
         ],
         'log' => [
             'traceLevel' => YII_DEBUG ? 3 : 0,
@@ -62,6 +63,8 @@ $config = [
             'showScriptName' => false,
             'enablePrettyUrl' => true,
             'rules' => array(
+                'admin/password-recovery' => '/admin/index/password-recovery',
+                'admin/password-reset' => '/admin/index/password-reset',
                 'admin/login' => '/admin/index/login',
                 'admin' => '/admin/index/index',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',

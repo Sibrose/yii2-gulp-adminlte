@@ -14,6 +14,7 @@ use yii\web\IdentityInterface;
  * @property string $username
  * @property string $password_hash
  * @property string $password_reset_token
+ * @property string $password_reset_token_expired_on
  * @property string $verification_token
  * @property string $email
  * @property string $auth_key
@@ -93,10 +94,6 @@ class User extends ActiveRecord implements IdentityInterface
      */
     public static function findByPasswordResetToken($token)
     {
-        if (!static::isPasswordResetTokenValid($token)) {
-            return null;
-        }
-
         return static::findOne([
             'password_reset_token' => $token,
             'status' => self::STATUS_ACTIVE,
@@ -116,21 +113,26 @@ class User extends ActiveRecord implements IdentityInterface
         ]);
     }
 
+    public static function findByEmail($email)
+    {
+        return self::findOne([
+            'email' => $email,
+            'status' => self::STATUS_ACTIVE
+        ]);
+    }
+
     /**
      * Finds out if password reset token is valid
      *
-     * @param string $token password reset token
      * @return bool
      */
-    public static function isPasswordResetTokenValid($token)
+    public function isPasswordResetTokenValid()
     {
-        if (empty($token)) {
+        if (empty($this->password_reset_token)) {
             return false;
         }
 
-        $timestamp = (int) substr($token, strrpos($token, '_') + 1);
-        $expire = Yii::$app->params['user.passwordResetTokenExpire'];
-        return $timestamp + $expire >= time();
+        return strtotime(date('Y-m-d H:i:s')) < strtotime($this->password_reset_token_expired_on);
     }
 
     /**
@@ -192,6 +194,7 @@ class User extends ActiveRecord implements IdentityInterface
     public function generatePasswordResetToken()
     {
         $this->password_reset_token = Yii::$app->security->generateRandomString() . '_' . time();
+        $this->password_reset_token_expired_on = date('Y-m-d H:i:s', strtotime('+3 hours'));
     }
 
     public function generateEmailVerificationToken()

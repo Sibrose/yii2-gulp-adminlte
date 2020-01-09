@@ -4,7 +4,7 @@ use yii\bootstrap\ActiveForm;
 
 /* @var $this yii\web\View */
 /* @var $form yii\bootstrap\ActiveForm */
-/* @var $model \app\forms\LoginForm */
+/* @var $model \app\modules\admin\forms\LoginForm */
 
 $this->title = 'Панель администратора';
 
@@ -25,6 +25,12 @@ $fieldOptions2 = [
     </div>
     <!-- /.login-logo -->
     <div class="login-box-body">
+        <?php if (Yii::$app->session->getFlash('password-reset')) : ?>
+            <div class="alert alert-success alert-dismissible">
+                <?= Yii::$app->session->getFlash('password-reset') ?>
+            </div>
+        <?php endif; ?>
+
         <?php $form = ActiveForm::begin(['id' => 'login-form', 'enableClientValidation' => false]); ?>
 
         <?= $form
@@ -51,7 +57,7 @@ $fieldOptions2 = [
 
         <?php ActiveForm::end(); ?>
 
-        <a href="#">Забыли пароль?</a><br>
+        <a href="/admin/password-recovery">Забыли пароль?</a><br>
     </div>
     <!-- /.login-box-body -->
 </div><!-- /.login-box -->
