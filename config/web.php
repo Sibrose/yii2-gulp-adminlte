@@ -67,6 +67,7 @@ $config = [
                 'admin/password-reset' => '/admin/index/password-reset',
                 'admin/login' => '/admin/index/login',
                 'admin' => '/admin/index/index',
+                'static/<page:\w+>' => 'site/static',
                 '<controller:\w+>/<id:\d+>' => '<controller>/view',
                 '<controller\w+>/<action>/<id\d+>' => '<controller>/<action>',
                 '<controller:\w+>/<action:\w+>' => '<controller>/<action>',
