@@ -1,5 +1,5 @@
-# yii2basic-gulp-adminlte
-Каркас yii2-basic приложения с модулем админки AdminLTE и сборщиком gulp
+# yii2basic-webpack-adminlte
+Каркас yii2-basic приложения с модулем админки AdminLTE и Webpack
 
 Шаги установки:
 
@@ -31,12 +31,15 @@ return [
 ];
 ```
 
-5. Создать файл .env и указать имя локального хоста в параметре PROXY.
+5. Накатить миграции посредством команды `php yii migrate`.
 
-6. Накатить миграции посредством команды `php yii migrate`.
+6. Создать в таблице `users` пользователя для доступа в админку. 
+Можно использовать следующий запрос (login - admin, pass - qwertydoctor): 
+`INSERT INTO `user` VALUES ('1', 'admin', '1', '$2y$13$YR8vM7kMXhjIa7hnxkaV5.qHtxTlj0BnQyvrfFSDz9.C5iAMnyJRK', null, 'admin@admin.ru', '10', '12', '12', null);`
 
-7. Создать в таблице `users` пользователя для доступа в админку.
+Запуск Webpack осуществляется с помощью команды `npm start`
 
 Все scss, js, шрифты и изображения хранятся в директории `/assets/src/`. 
+Js-скрипты добавляются в папку `/assets/src/js/vendor`, после чего нужно добавить импорт в `/assets/src/js/index.js`.
 
-При добавлении новых js-файлов, необходимо указать путь в config.yml по аналогии с примером.
+
