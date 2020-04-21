@@ -2,6 +2,7 @@ const path = require("path");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const CopyPlugin = require('copy-webpack-plugin');
+const webpack = require('webpack');
 
 module.exports = {
     entry: "./assets/src/index.js",
@@ -83,6 +84,12 @@ module.exports = {
         new CopyPlugin([
             { from: './assets/src/img', to: '../img' },
         ]),
+        new webpack.ProvidePlugin({
+            $: 'jquery',
+            jQuery: 'jquery',
+            'window.jQuery': 'jquery',
+            'window.$': 'jquery'
+        }),
     ],
     optimization: {
         minimizer: [
