@@ -35,7 +35,7 @@ return [
 
 6. Создать в таблице `users` пользователя для доступа в админку. 
 Можно использовать следующий запрос (login - admin, pass - qwertydoctor): 
-`INSERT INTO `user` VALUES ('1', 'admin', '1', '$2y$13$YR8vM7kMXhjIa7hnxkaV5.qHtxTlj0BnQyvrfFSDz9.C5iAMnyJRK', null, 'admin@admin.ru', '10', '12', '12', null);`
+`INSERT INTO users VALUES ('1', 'admin', '1', '$2y$13$YR8vM7kMXhjIa7hnxkaV5.qHtxTlj0BnQyvrfFSDz9.C5iAMnyJRK', null, null, 'admin@admin.ru', '10', '2', '2');`
 
 Запуск Webpack осуществляется с помощью команды `npm start`
 
