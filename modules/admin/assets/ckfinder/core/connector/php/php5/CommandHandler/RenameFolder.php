@@ -32,6 +32,35 @@ require_once CKFINDER_CONNECTOR_LIB_DIR . "/CommandHandler/XmlCommandHandlerBase
  */
 class CKFinder_Connector_CommandHandler_RenameFolder extends CKFinder_Connector_CommandHandler_XmlCommandHandlerBase
 {
+    public function urlToTranslit($text)
+    {
+        $tr = array(
+            'А' => 'A', 'Б' => 'B', 'В' => 'V', 'Г' => 'G', 'Д' => 'D',
+            'Е' => 'E', 'Ё' => 'Yo', 'Ж' => 'Zh', 'З' => 'Z', 'И' => 'I',
+            'Й' => 'J', 'К' => 'K', 'Л' => 'L', 'М' => 'M', 'Н' => 'N',
+            'О' => 'O', 'П' => 'P', 'Р' => 'R', 'С' => 'S', 'Т' => 'T',
+            'У' => 'U', 'Ф' => 'F', 'Х' => 'H', 'Ц' => 'C', 'Ч' => 'Ch',
+            'Ш' => 'Sh', 'Щ' => 'W', 'Ъ' => '', 'Ы' => 'Y', 'Ь' => '',
+            'Э' => 'Ye', 'Ю' => 'Yu', 'Я' => 'Ya',
+            'а' => 'a', 'б' => 'b', 'в' => 'v', 'г' => 'g', 'д' => 'd',
+            'е' => 'e', 'ё' => 'yo', 'ж' => 'zh', 'з' => 'z', 'и' => 'i',
+            'й' => 'j', 'к' => 'k', 'л' => 'l', 'м' => 'm', 'н' => 'n',
+            'о' => 'o', 'п' => 'p', 'р' => 'r', 'с' => 's', 'т' => 't',
+            'у' => 'u', 'ф' => 'f', 'х' => 'h', 'ц' => 'c', 'ч' => 'ch',
+            'ш' => 'sh', 'щ' => 'w', 'ъ' => '', 'ы' => 'y', 'ь' => '',
+            'э' => 'ye', 'ю' => 'yu', 'я' => 'ya',
+            '!' => '', '@' => '', '#' => '', '$' => '', '%' => '',
+            '^' => '', '&' => '', '*' => '', '(' => '', ')' => '',
+            '"' => '', ' ' => '_', ';' => '', ':' => '', '?' => '',
+            '[' => '', ']' => '', '{' => '', '}' => '', '\'' => '',
+            ',' => '', '/' => '', '<' => '', '>' => '',
+            '\\' => '', '|' => '', '=' => '', '+' => '',
+            '№' => '',
+        );
+
+        return strtr($text, $tr);
+    }
+    
     /**
      * Command name
      *
@@ -61,6 +90,7 @@ class CKFinder_Connector_CommandHandler_RenameFolder extends CKFinder_Connector_
         }
 
         $newFolderName = CKFinder_Connector_Utils_FileSystem::convertToFilesystemEncoding($_GET["NewFolderName"]);
+        $newFolderName = $this->urlToTranslit($newFolderName);
         $_config =& CKFinder_Connector_Core_Factory::getInstance("Core_Config");
         if ($_config->forceAscii()) {
             $newFolderName = CKFinder_Connector_Utils_FileSystem::convertToAscii($newFolderName);
